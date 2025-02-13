@@ -1,0 +1,160 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding-right: 80px;
+    padding-top: 75px;
+    height: 120vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4f7fc; /* Light background for the whole page */
+    position: relative;
+  }
+  
+  /* Signup Form Container */
+  .signup-form {
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    z-index: 1;
+  }
+  
+  /* Signup Form Heading */
+  .signup-form h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Input Fields */
+  .input-field,
+  .confirm-password {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+  }
+  
+  .input-field:focus,
+  .confirm-password:focus {
+    outline: none;
+    border-color: #4a59d6;
+    background-color: #fff;
+  }
+  
+  /* Placeholder text styling */
+  .input-field::placeholder,
+  .confirm-password::placeholder {
+    color: #aaa;
+    opacity: 1; /* Ensure the placeholder is visible */
+  }
+  
+  /* Submit Button */
+  .signup-btn {
+    background-color: #4a59d6;
+    color: white;
+    padding: 15px;
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .signup-btn:hover {
+    background-color: #6e7cdb;
+    transform: translateY(-3px); /* Slightly lift the button */
+  }
+  
+  /* Hover effect on form fields */
+  .input-field:hover,
+  .confirm-password:hover {
+    border-color: #4a59d6;
+  }
+  
+  /* Link Styling */
+  .link {
+    color: #4a59d6;
+    font-size: 1rem;
+    text-decoration: none;
+    margin-top: 20px;
+    display: block;
+    font-weight: 600;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+    color: #6e7cdb;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .signup-form {
+      max-width: 500px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .signup-form {
+      max-width: 90%;
+      padding: 25px;
+    }
+  
+    .signup-form h2 {
+      font-size: 2rem;
+    }
+  
+    .input-field, .confirm-password {
+      font-size: 0.95rem;
+      padding: 12px;
+    }
+  
+    .signup-btn {
+      font-size: 1.1rem;
+      padding: 14px;
+    }
+  
+    .link {
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .signup-form {
+      max-width: 90%;
+      padding: 20px;
+    }
+  
+    .signup-form h2 {
+      font-size: 1.75rem;
+    }
+  
+    .input-field, .confirm-password {
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+  
+    .signup-btn {
+      font-size: 1rem;
+      padding: 14px;
+    }
+  
+    .link {
+      font-size: 0.8rem;
+    }
+  }
+  
