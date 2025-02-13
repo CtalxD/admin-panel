@@ -1,0 +1,128 @@
+/* App layout */
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.logo {
+  margin-left: 20px;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-top: 60px; /* To make space for the fixed header */
+}
+
+.main-content {
+  margin-left: 0;
+  padding: 20px;
+  background-color: #f9f9f9;
+  height: 100%;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar {
+  width: 0;
+  background-color: #333;
+  color: white;
+  position: fixed;
+  height: 100%;
+  transition: width 0.3s;
+  padding-top: 90px;
+}
+
+.sidebar.open {
+  width: 250px; /* Sidebar expands to full size when open */
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 20px;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect with animation */
+.sidebar li:hover {
+  background-color: #575757; /* Hover effect for sidebar items */
+  transform: scale(1.05); /* Small scale animation on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect on hover for more emphasis */
+}
+
+.sidebar li:active {
+  transform: scale(1.03); /* Slight scale when clicked */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Reduced shadow effect on click */
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block; /* Ensures the entire area is clickable */
+}
+
+/* Hamburger Icon Styles */
+.hamburger {
+  background: none;
+  border: none;
+  color: grey;  /* Initially grey */
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+  cursor: pointer;
+  transition: color 0.3s ease;  /* Smooth transition for color change */
+}
+
+/* When sidebar is open, change hamburger button color to white */
+.sidebar.open .hamburger {
+  color: white;
+}
+
+/* Sidebar Styles */
+.sidebar-menu {
+  display: none; /* Initially hidden */
+}
+
+.sidebar-menu.block {
+  display: block; /* Shows when 'block' class is added */
+}
+
+.sidebar-menu.hidden {
+  display: none; /* Hides when 'hidden' class is added */
+}
+
+/* Styles for when sidebar is open */
+.sidebar-open {
+  margin-left: 250px;
+}
+
+/* Media Query for responsiveness */
+@media screen and (max-width: 768px) {
+  .main-content {
+    margin-left: 0; /* No margin on smaller screens */
+  }
+
+  .sidebar {
+    width: 0;
+  }
+
+  .sidebar.open {
+    width: 250px; /* Sidebar expands on mobile */
+  }
+
+  .hamburger {
+    left: 10px; /* Position the hamburger icon on mobile */
+  }
+
+  .app {
+    flex-direction: column;
+  }
+}
