@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../styles/Login.css'; // Import the Login.css file for styling
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Add the icons for password visibility toggle
+import '../styles/Login.css';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
@@ -9,14 +9,30 @@ const Login = ({ setIsLoggedIn }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Replace with actual login logic, e.g., calling API to verify credentials
-    if (email === 'admin@example.com' && password === 'password') {
-      setIsLoggedIn(true); // Update the logged-in status in the parent
-      navigate('/dashboard'); // Redirect to the dashboard after successful login
-    } else {
-      alert('Invalid credentials');
+
+    try {
+      const response = await fetch('http://localhost:3000/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem('token', data.token); // Store the token in localStorage
+        setIsLoggedIn(true); // Update the logged-in status in the parent
+        navigate('/dashboard'); // Redirect to the dashboard after successful login
+      } else {
+        alert(data.message || 'Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      alert('An error occurred during login');
     }
   };
 
@@ -56,9 +72,6 @@ const Login = ({ setIsLoggedIn }) => {
             Login
           </button>
         </form>
-        <a href="/signup" className="link">
-          Don't have an account? Sign Up
-        </a>
       </div>
     </div>
   );
