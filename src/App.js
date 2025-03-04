@@ -8,38 +8,31 @@ import BusManagement from './components/BusManagement';
 import PaymentManagement from './components/PaymentManagement';
 import BookingManagement from './components/BookingManagement';
 import DocumentManagement from './components/DocumentManagement';
-import Login from './components/Login'; // Import the Login component
 import './styles/App.css';
 
 const App = () => {
-  // Set `isLoggedIn` to false initially to show the login page
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Set `isLoggedIn` to true to bypass login
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <Router>
       <div className="app">
-        {/* Show Login if not logged in, otherwise show the main app */}
-        {!isLoggedIn ? (
-          <Login setIsLoggedIn={setIsLoggedIn} />
-        ) : (
-          <>
-            <Sidebar />
-            <div className="content">
-              <Header />
-              <div className="main-content">
-                <Routes>
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/user-management" element={<UserManagement />} />
-                  <Route path="/bus-management" element={<BusManagement />} />
-                  <Route path="/payment-management" element={<PaymentManagement />} />
-                  <Route path="/booking-management" element={<BookingManagement />} />
-                  <Route path="/document-management" element={<DocumentManagement />} />
-                  <Route path="/" element={<Navigate to="/dashboard" />} />
-                </Routes>
-              </div>
-            </div>
-          </>
-        )}
+        {/* Always show the main app */}
+        <Sidebar />
+        <div className="content">
+          <Header />
+          <div className="main-content">
+            <Routes>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/user-management" element={<UserManagement />} />
+              <Route path="/bus-management" element={<BusManagement />} />
+              <Route path="/payment-management" element={<PaymentManagement />} />
+              <Route path="/booking-management" element={<BookingManagement />} />
+              <Route path="/document-management" element={<DocumentManagement />} />
+              <Route path="/" element={<Navigate to="/dashboard" />} />
+            </Routes>
+          </div>
+        </div>
       </div>
     </Router>
   );
