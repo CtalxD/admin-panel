@@ -103,8 +103,8 @@ const UserManagement = () => {
   const [users, setUsers] = useState([
     {
       id: 1,
-      name: 'John Doe',
-      email: 'johndoe@example.com',
+      name: 'aryal.sital',
+      email: 'sitalaryal@admin.io',
       age: 30,
       role: 'Admin',
       registrationDate: '2025-01-15',
@@ -113,8 +113,8 @@ const UserManagement = () => {
     },
     {
       id: 2,
-      name: 'Jane Smith',
-      email: 'janesmith@example.com',
+      name: 'Aryal',
+      email: 'aryal@passenger.io',
       age: 25,
       role: 'Passenger',
       registrationDate: '2025-01-17',
@@ -123,8 +123,8 @@ const UserManagement = () => {
     },
     {
       id: 3,
-      name: 'Michael Johnson',
-      email: 'michaelj@example.com',
+      name: 'Sital',
+      email: 'sital@test.io',
       age: 28,
       role: 'Driver',
       registrationDate: '2025-01-20',
