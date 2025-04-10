@@ -7,7 +7,7 @@ const UserManagement = () => {
 
   const fetchUsers = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/users');
+      const response = await fetch('http://localhost:5000/getAllUsers');
       const data = await response.json();
       setUsers(data);
     } catch (error) {
@@ -16,7 +16,7 @@ const UserManagement = () => {
   };
 
   const filteredUsers = users.filter((user) =>
-    user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    user.firstName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   useEffect(() => {
@@ -59,12 +59,12 @@ const UserManagement = () => {
               filteredUsers.map((user) => (
                 <tr key={user.id}>
                   <td>{user.id}</td>
-                  <td>{user.name}</td>
+                  <td>{user.firstName}</td>
                   <td>{user.email}</td>
                   <td>{user.age}</td>
                   <td>{user.role}</td>
-                  <td>{user.registrationDate}</td>
-                  <td>{user.registrationTime}</td>
+                  <td>{user.createdAt}</td>
+                  <td>{user.updatedAt}</td>
                   <td>
                     <span
                       className={`status-badge ${

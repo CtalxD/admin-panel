@@ -8,31 +8,39 @@ import BusManagement from './components/BusManagement';
 import PaymentManagement from './components/PaymentManagement';
 import BookingManagement from './components/BookingManagement';
 import DocumentManagement from './components/DocumentManagement';
+import Login from './components/Login';
 import './styles/App.css';
 
 const App = () => {
-  // Set `isLoggedIn` to true to bypass login
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <Router>
       <div className="app">
-        {/* Always show the main app */}
-        <Sidebar />
-        <div className="content">
-          <Header />
-          <div className="main-content">
-            <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/user-management" element={<UserManagement />} />
-              <Route path="/bus-management" element={<BusManagement />} />
-              <Route path="/payment-management" element={<PaymentManagement />} />
-              <Route path="/booking-management" element={<BookingManagement />} />
-              <Route path="/document-management" element={<DocumentManagement />} />
-              <Route path="/" element={<Navigate to="/dashboard" />} />
-            </Routes>
-          </div>
-        </div>
+        {isLoggedIn ? (
+          <>
+            <Sidebar />
+            <div className="content">
+              <Header />
+              <div className="main-content">
+                <Routes>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/user-management" element={<UserManagement />} />
+                  <Route path="/bus-management" element={<BusManagement />} />
+                  <Route path="/payment-management" element={<PaymentManagement />} />
+                  <Route path="/booking-management" element={<BookingManagement />} />
+                  <Route path="/document-management" element={<DocumentManagement />} />
+                  <Route path="/" element={<Navigate to="/dashboard" />} />
+                </Routes>
+              </div>
+            </div>
+          </>
+        ) : (
+          <Routes>
+            <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="*" element={<Navigate to="/login" />} />
+          </Routes>
+        )}
       </div>
     </Router>
   );

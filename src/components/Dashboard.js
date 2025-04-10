@@ -15,13 +15,13 @@ const Dashboard = () => {
           const { latitude, longitude } = pos.coords;
           setPosition({ lat: latitude, lng: longitude });
           setPermissionGranted(true);
-          setLoading(false); // Once the position is fetched, stop loading
+          setLoading(false);
         },
         (error) => {
           console.error("Error getting location: ", error);
           setPosition({ lat: 27.7172, lng: 85.3240 }); // Default to Kathmandu
           setPermissionGranted(false);
-          setLoading(false); // Stop loading even if there's an error
+          setLoading(false);
         },
         { enableHighAccuracy: true } // Ensures more accurate readings
       );
