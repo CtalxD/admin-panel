@@ -1,12 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, CircleMarker } from "react-leaflet";
+import React, { useState, useEffect, useRef } from "react";
+import { MapContainer, TileLayer, CircleMarker, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import "../styles/Dashboard.css"; // Fix the relative path
+import "../styles/Dashboard.css";
+import Sidebar from "./Sidebar";
+import HamburgerButton from "./hamburgerButton";
 
 const Dashboard = () => {
-  const [position, setPosition] = useState(null); // User's location
-  const [permissionGranted, setPermissionGranted] = useState(false); // Location access status
-  const [loading, setLoading] = useState(true); // Loading state for location fetch
+  const [position, setPosition] = useState(null);
+  const [permissionGranted, setPermissionGranted] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const mapRef = useRef();
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
+
+  const ZoomToLocation = ({ position }) => {
+    const map = useMap();
+  
+    useEffect(() => {
+      if (position) {
+        map.flyTo(position, 15, {
+          duration: 1,
+        });
+      }
+    }, [position, map]);
+  
+    return null;
+  };
 
   useEffect(() => {
     if (navigator.geolocation) {
@@ -19,17 +41,17 @@ const Dashboard = () => {
         },
         (error) => {
           console.error("Error getting location: ", error);
-          setPosition({ lat: 27.7172, lng: 85.3240 }); // Default to Kathmandu
+          setPosition({ lat: 27.7172, lng: 85.3240 });
           setPermissionGranted(false);
           setLoading(false);
         },
-        { enableHighAccuracy: true } // Ensures more accurate readings
+        { enableHighAccuracy: true }
       );
     } else {
       alert("Geolocation is not supported by this browser.");
-      setPosition({ lat: 27.7172, lng: 85.3240 }); // Default to Kathmandu
+      setPosition({ lat: 27.7172, lng: 85.3240 });
       setPermissionGranted(false);
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   }, []);
 
@@ -39,6 +61,9 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
+      <HamburgerButton isOpen={sidebarOpen} toggle={toggleSidebar} />
+      <Sidebar isOpen={sidebarOpen} toggle={toggleSidebar} />
+      
       {!permissionGranted && (
         <div className="warning">
           Location access denied. Showing default location.
@@ -49,14 +74,15 @@ const Dashboard = () => {
           center={position}
           zoom={15}
           className="map"
-          zoomControl={false} // Disable default zoom control
+          zoomControl={false}
+          whenCreated={(map) => {
+            mapRef.current = map;
+          }}
         >
-          {/* Custom Map TileLayer for inDrive-like UI */}
           <TileLayer
             url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="https://carto.com/attributions">CARTO</a>'
           />
-          {/* Custom CircleMarker for user's location */}
           <CircleMarker
             center={position}
             radius={10}
@@ -64,10 +90,10 @@ const Dashboard = () => {
             fillOpacity={0.6}
             stroke={false}
           />
-          {/* Custom zoom control */}
+          <ZoomToLocation position={position} />
           <div className="leaflet-control leaflet-bar custom-zoom-control">
-            <button className="leaflet-control-zoom-in">+</button>
-            <button className="leaflet-control-zoom-out">−</button>
+            <button onClick={() => mapRef.current.zoomIn()}>+</button>
+            <button onClick={() => mapRef.current.zoomOut()}>−</button>
           </div>
         </MapContainer>
       </div>

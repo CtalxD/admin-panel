@@ -7,7 +7,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f4f7fc;
+  background-color: #ffffff;
   position: relative;
   overflow-x: hidden;
 }
@@ -20,7 +20,7 @@ body::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, #6e7cdb, #4a59d6, #3b4bc7);
+  background: linear-gradient(135deg, #f8f9fa, #f8f9fa, #f8f9fa);
   background-size: 300% 300%;
   z-index: -1;
   animation: gradientShift 15s ease infinite;

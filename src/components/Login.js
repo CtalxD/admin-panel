@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Login.css';
-import { FaEye, FaEyeSlash, FaLock, FaEnvelope } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaLock, FaEnvelope, FaSignInAlt } from 'react-icons/fa';
 
 const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+    setError('');
 
     try {
       const response = await fetch('http://localhost:5000/admin/login', {
@@ -28,11 +32,13 @@ const Login = ({ setIsLoggedIn }) => {
         setIsLoggedIn(true);
         navigate('/dashboard'); 
       } else {
-        alert(data.message || 'Invalid credentials');
+        setError(data.message || 'Invalid credentials');
       }
     } catch (error) {
       console.error('Login error:', error);
-      alert('An error occurred during login');
+      setError('An error occurred during login');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -49,6 +55,7 @@ const Login = ({ setIsLoggedIn }) => {
           </div>
         </div>
         <h2>Admin Login</h2>
+        {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleLogin}>
           <div className="input-group">
             <div className="input-icon">
@@ -62,6 +69,7 @@ const Login = ({ setIsLoggedIn }) => {
               className="input-field"
               placeholder="Enter your email"
               required
+              autoFocus
             />
           </div>
           <div className="password-wrapper">
@@ -77,12 +85,27 @@ const Login = ({ setIsLoggedIn }) => {
               placeholder="Enter your password"
               required
             />
-            <span className="password-icon" onClick={togglePasswordVisibility}>
+            <span 
+              className="password-icon" 
+              onClick={togglePasswordVisibility}
+              title={passwordVisible ? 'Hide password' : 'Show password'}
+            >
               {passwordVisible ? <FaEyeSlash /> : <FaEye />}
             </span>
           </div>
-          <button type="submit" className="login-btn">
-            <span>Login</span>
+          <button 
+            type="submit" 
+            className="login-btn"
+            disabled={isLoading}
+          >
+            {isLoading ? (
+              <span>Logging in...</span>
+            ) : (
+              <>
+                <FaSignInAlt style={{ marginRight: '8px' }} />
+                <span>Login</span>
+              </>
+            )}
           </button>
         </form>
       </div>

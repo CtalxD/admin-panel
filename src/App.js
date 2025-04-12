@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import HamburgerButton from './components/hamburgerButton';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Dashboard from './components/Dashboard';
@@ -9,18 +10,23 @@ import PaymentManagement from './components/PaymentManagement';
 import BookingManagement from './components/BookingManagement';
 import DocumentManagement from './components/DocumentManagement';
 import Login from './components/Login';
-import './styles/App.css';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   return (
     <Router>
       <div className="app">
         {isLoggedIn ? (
           <>
-            <Sidebar />
-            <div className="content">
+            <HamburgerButton isOpen={isSidebarOpen} toggle={toggleSidebar} />
+            <Sidebar isOpen={isSidebarOpen} toggle={toggleSidebar} />
+            <div className={`content ${isSidebarOpen ? 'sidebar-open' : ''}`}>
               <Header />
               <div className="main-content">
                 <Routes>
