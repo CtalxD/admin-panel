@@ -113,3 +113,29 @@
     background-color: #b21f2d;
   }
   
+  .document-image-cell {
+    text-align: center;
+    vertical-align: middle;
+  }
+  
+  .document-image-cell a {
+    display: inline-block;
+  }
+  
+  .document-thumbnail {
+    width: 100px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    transition: transform 0.2s;
+  }
+  
+  .document-thumbnail:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Status Badge */
+  .status-rejected {
+    color: #dc3545;
+    background-color: #f8d7da;
+  }
