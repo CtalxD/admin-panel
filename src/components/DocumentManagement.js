@@ -17,7 +17,7 @@ const DocumentManagement = () => {
                 throw new Error("No authentication token found");
             }
 
-            const response = await fetch("http://localhost:5000/getAllDocuments", {
+            const response = await fetch("http://localhost:5000/document", {
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const DocumentManagement = () => {
             }
 
             const data = await response.json();
-            setDocuments(data.data);
+            setDocuments(data);
         } catch (error) {
             console.error("Error fetching documents:", error);
             setError(error.message);
@@ -69,7 +69,7 @@ const DocumentManagement = () => {
     const handleApprove = async (documentId) => {
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch(`http://localhost:5000/getAllDocuments/${documentId}/approve`, {
+            const response = await fetch(`http://localhost:5000/document/${documentId}/approve`, {
                 method: "PUT",
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -141,10 +141,10 @@ const DocumentManagement = () => {
         }
     };
 
-    const previewImage = (imageUrl) => {
-        const fullImageUrl = imageUrl.startsWith("http") ? imageUrl : `http://localhost:5000${imageUrl}`;
-        window.open(fullImageUrl, "_blank");
-    };
+    // const previewImage = (imageUrl) => {
+    //     const fullImageUrl = imageUrl.startsWith("http") ? imageUrl : `http://localhost:5000${imageUrl}`;
+    //     window.open(fullImageUrl, "_blank");
+    // };
 
     return (
         <div className="document-management-container">
@@ -229,11 +229,11 @@ const DocumentManagement = () => {
                                 <th>User</th>
                                 <th>Email</th>
                                 <th>License Number</th>
-                                <th>Blue Book</th>
-                                <th>Vehicle Images</th>
                                 <th>Status</th>
+                                <th>Role</th>
                                 <th>Submitted</th>
                                 <th>Actions</th>
+                                <th>Comments</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -247,7 +247,7 @@ const DocumentManagement = () => {
                                             <a href={`mailto:${doc.user?.email}`}>{doc.user?.email}</a>
                                         </td>
                                         <td>{doc.licenseNumber}</td>
-                                        <td className="document-images">
+                                        {/* <td className="document-images">
                                             {doc.blueBookImage?.map((img, idx) => (
                                                 <div
                                                     key={idx}
@@ -286,7 +286,7 @@ const DocumentManagement = () => {
                                                     />
                                                 </div>
                                             ))}
-                                        </td>
+                                        </td> */}
                                         <td>
                                             <span className={`status-badge ${getStatusBadgeClass(doc.status)}`}>{doc.status}</span>
                                             {doc.adminComment && (
@@ -295,10 +295,14 @@ const DocumentManagement = () => {
                                                 </div>
                                             )}
                                         </td>
+                                        <td className="Role">
+                                            {doc.user?.role === "DRIVER" ? "Driver" : doc.user?.role === "ADMIN" ? "Admin" : "User"}
+                                        </td>
                                         <td>
                                             {new Date(doc.createdAt).toLocaleDateString()} at{" "}
                                             {new Date(doc.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
                                         </td>
+
                                         <td className="actions-cell">
                                             {doc.status === "PENDING" && (
                                                 <>
@@ -321,6 +325,13 @@ const DocumentManagement = () => {
                                                         </svg>
                                                     </button>
                                                 </>
+                                            )}
+                                        </td>
+                                        <td className="comments-cell">
+                                            {doc.adminComment && (
+                                                <div className="admin-comment">
+                                                    <strong>Comment:</strong> {doc.adminComment}
+                                                </div>
                                             )}
                                         </td>
                                     </tr>
