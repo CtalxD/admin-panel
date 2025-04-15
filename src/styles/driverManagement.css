@@ -1,0 +1,469 @@
+/* DriverManagement.css */
+.document-management-container {
+    padding: 24px;
+    background-color: #f5f7fa;
+    min-height: 100vh;
+  }
+  
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  
+  .document-management-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0;
+  }
+  
+  .controls {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .search-container {
+    position: relative;
+    width: 320px;
+  }
+  
+  .search-icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    fill: #64748b;
+  }
+  
+  .search-input {
+    width: 100%;
+    padding: 8px 36px 8px 36px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  
+  .search-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+  
+  .clear-search {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .clear-search svg {
+    width: 18px;
+    height: 18px;
+    fill: #64748b;
+  }
+  
+  .filter-dropdown {
+    position: relative;
+  }
+  
+  .status-filter {
+    padding: 8px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: white;
+    outline: none;
+    min-width: 150px;
+    cursor: pointer;
+  }
+  
+  .status-filter:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+  
+  .refresh-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .refresh-button:hover {
+    background-color: #f1f5f9;
+  }
+  
+  .refresh-icon {
+    width: 16px;
+    height: 16px;
+    fill: #64748b;
+  }
+  
+  .stats-bar {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+  
+  .stat-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 16px 20px;
+    flex: 1;
+    min-width: 180px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat-value {
+    font-size: 28px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+  
+  .stat-label {
+    font-size: 14px;
+    color: #64748b;
+  }
+  
+  .table-container {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .document-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .document-table th,
+  .document-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  
+  .document-table th {
+    background-color: #f8fafc;
+    font-weight: 600;
+    font-size: 14px;
+    color: #475569;
+    white-space: nowrap;
+  }
+  
+  .document-table tbody tr:hover {
+    background-color: #f8fafc;
+  }
+  
+  .driver-id {
+    font-family: monospace;
+    color: #475569;
+  }
+  
+  .user-name {
+    font-weight: 500;
+  }
+  
+  .user-email a {
+    color: #3b82f6;
+    text-decoration: none;
+  }
+  
+  .user-email a:hover {
+    text-decoration: underline;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  
+  .status-approved {
+    background-color: #dcfce7;
+    color: #166534;
+  }
+  
+  .status-pending {
+    background-color: #fff7ed;
+    color: #9a3412;
+  }
+  
+  .status-rejected {
+    background-color: #fee2e2;
+    color: #b91c1c;
+  }
+  
+  .role-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  
+  .driver-badge {
+    background-color: #e0f2fe;
+    color: #0369a1;
+  }
+  
+  .admin-badge {
+    background-color: #fae8ff;
+    color: #a21caf;
+  }
+  
+  .user-badge {
+    background-color: #f3f4f6;
+    color: #4b5563;
+  }
+  
+  .actions-cell {
+    white-space: nowrap;
+  }
+  
+  .action-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  
+  .action-button svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+  }
+  
+  .revoke-button {
+    background-color: #fee2e2;
+    color: #b91c1c;
+  }
+  
+  .revoke-button:hover {
+    background-color: #fecaca;
+  }
+  
+  .confirmation-dialog {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .confirm-button,
+  .cancel-button {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .confirm-button {
+    background-color: #ef4444;
+    color: white;
+  }
+  
+  .cancel-button {
+    background-color: #e5e7eb;
+    color: #4b5563;
+  }
+  
+  .admin-comment {
+    font-size: 13px;
+    color: #64748b;
+    max-width: 250px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .admin-comment:hover {
+    white-space: normal;
+    overflow: visible;
+  }
+  
+  .no-data-row td {
+    text-align: center;
+    padding: 48px 0;
+  }
+  
+  .no-data {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .no-data-icon {
+    width: 48px;
+    height: 48px;
+    fill: #cbd5e1;
+  }
+  
+  .no-data p {
+    color: #64748b;
+    font-size: 15px;
+    margin: 0;
+  }
+  
+  .clear-search-btn {
+    background-color: #e5e7eb;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    cursor: pointer;
+    color: #4b5563;
+  }
+  
+  .clear-search-btn:hover {
+    background-color: #d1d5db;
+  }
+  
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e2e8f0;
+    border-top: 3px solid #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .error-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    gap: 12px;
+  }
+  
+  .error-icon {
+    width: 40px;
+    height: 40px;
+    fill: #ef4444;
+  }
+  
+  .error-message p {
+    font-size: 15px;
+    color: #b91c1c;
+    margin: 0;
+  }
+  
+  .retry-button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .retry-button:hover {
+    background-color: #2563eb;
+  }
+  
+  /* Media queries for responsiveness */
+  @media (max-width: 1024px) {
+    .header-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .controls {
+      width: 100%;
+    }
+    
+    .search-container {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .document-table {
+      display: block;
+      overflow-x: auto;
+    }
+    
+    .stats-bar {
+      flex-direction: column;
+    }
+    
+    .stat-card {
+      width: 100%;
+    }
+    
+    .controls {
+      flex-direction: column;
+    }
+    
+    .filter-dropdown,
+    .refresh-button {
+      width: 100%;
+    }
+  }

@@ -9,6 +9,7 @@ import BusManagement from './components/BusManagement';
 import PaymentManagement from './components/PaymentManagement';
 import BookingManagement from './components/BookingManagement';
 import DocumentManagement from './components/DocumentManagement';
+import DriverManagement from './components/DriverManagement';
 import Login from './components/Login';
 
 const App = () => {
@@ -36,6 +37,7 @@ const App = () => {
                   <Route path="/payment-management" element={<PaymentManagement />} />
                   <Route path="/booking-management" element={<BookingManagement />} />
                   <Route path="/document-management" element={<DocumentManagement />} />
+                  <Route path="/driver-management" element={<DriverManagement />} />
                   <Route path="/" element={<Navigate to="/dashboard" />} />
                 </Routes>
               </div>
