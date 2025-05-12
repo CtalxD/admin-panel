@@ -6,7 +6,6 @@ import "../styles/Dashboard.css";
 import Sidebar from "./Sidebar";
 import HamburgerButton from "./hamburgerButton";
 import { io } from "socket.io-client";
-import { Bus } from "lucide-react";
 
 // Create bus icon for active drivers
 const busIcon = new L.DivIcon({
