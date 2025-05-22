@@ -1,3 +1,5 @@
+//admin-panel/src/components/Dashboard.js
+
 import React, { useState, useEffect, useRef } from "react";
 import { MapContainer, TileLayer, CircleMarker, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
